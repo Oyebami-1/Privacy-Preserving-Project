@@ -1,0 +1,132 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import math
+from sklearn.metrics import mean_squared_error
+from scipy.stats import expon, laplace
+
+# Read the heart-diseases.csv file
+df = pd.read_csv("C:/Users/Admin/Desktop/project1/heart-diseases.csv")
+
+# Function to apply the Laplace mechanism
+def apply_laplace_mechanism(data, scale):
+    return data + laplace.rvs(loc=0, scale=scale, size=data.size)
+
+# Function to apply the exponential mechanism
+def apply_exponential_mechanism(data, scale):
+    return data + expon.rvs(scale=scale, size=data.size)
+
+# Function to calculate MSE and RMSE
+def calculate_mse_rmse(original, noisy):
+    mse = mean_squared_error(original, noisy)
+    rmse = math.sqrt(mse)
+    return mse, rmse
+
+# Function to calculate Mean and Median
+def calculate_mean_median(data):
+    mean_value = np.mean(data)
+    median_value = np.median(data)
+    return mean_value, median_value
+
+# Scales for the Laplace and exponential mechanisms
+scales = [0.5, 1, 2]
+
+# Results storage for Laplace mechanism
+laplace_results = []
+
+# Results storage for exponential mechanism
+exponential_results = []
+
+# Plotting histograms for each feature and scale
+for scale in scales:
+    for feature in df.columns:
+        original_data = df[feature]
+
+        # Applying Laplace mechanism
+        noisy_data_laplace = apply_laplace_mechanism(original_data, scale)
+
+        # Applying Exponential mechanism
+        noisy_data_exponential = apply_exponential_mechanism(original_data, scale)
+
+        # Calculating MSE and RMSE for Laplace mechanism
+        mse_laplace, rmse_laplace = calculate_mse_rmse(original_data, noisy_data_laplace)
+
+        # Calculating Mean and Median for Laplace mechanism
+        mean_laplace, median_laplace = calculate_mean_median(noisy_data_laplace)
+
+        # Calculating MSE and RMSE for Exponential mechanism
+        mse_exponential, rmse_exponential = calculate_mse_rmse(original_data, noisy_data_exponential)
+
+        # Calculating Mean and Median for Exponential mechanism
+        mean_exponential, median_exponential = calculate_mean_median(noisy_data_exponential)
+
+        # Storing results for Laplace mechanism
+        laplace_results.append({
+            'Feature': feature.capitalize(),
+            'Scale': scale,
+            'MSE': mse_laplace,
+            'RMSE': rmse_laplace,
+            'Mean': mean_laplace,
+            'Median': median_laplace
+        })
+
+        # Storing results for Exponential mechanism
+        exponential_results.append({
+            'Feature': feature.capitalize(),
+            'Scale': scale,
+            'MSE': mse_exponential,
+            'RMSE': rmse_exponential,
+            'Mean': mean_exponential,
+            'Median': median_exponential
+        })
+
+# Creating DataFrames to display the results
+laplace_results_df = pd.DataFrame(laplace_results)
+exponential_results_df = pd.DataFrame(exponential_results)
+
+# Displaying the results
+print("Laplace Mechanism Results:")
+print(laplace_results_df)
+print("\nExponential Mechanism Results:")
+print(exponential_results_df)
+
+# Plotting histograms for each feature and scale for Laplace mechanism
+for scale in scales:
+    for feature in df.columns:
+        original_data = df[feature]
+        noisy_data = apply_laplace_mechanism(original_data, scale)
+
+        plt.figure(figsize=(8, 4))
+        sns.histplot(original_data, kde=True, color="blue", label='Original', alpha=0.6)
+        plt.title(f'{feature.capitalize()} Original Distribution')
+        plt.legend()
+        plt.tight_layout()
+        plt.show()
+
+        plt.figure(figsize=(8, 4))
+        sns.histplot(noisy_data, kde=True, color="red", label='Noisy', alpha=0.6)
+        plt.title(f'{feature.capitalize()} Noisy Distribution (Laplace, Scale {scale})')
+        plt.legend()
+        plt.tight_layout()
+        plt.show()
+
+# Plotting histograms for each feature and scale for Exponential mechanism
+for scale in scales:
+    for feature in df.columns:
+        original_data = df[feature]
+        noisy_data = apply_exponential_mechanism(original_data, scale)
+
+        plt.figure(figsize=(8, 4))
+        sns.histplot(original_data, kde=True, color="blue", label='Original', alpha=0.6)
+        plt.title(f'{feature.capitalize()} Original Distribution')
+        plt.legend()
+        plt.tight_layout()
+        plt.show()
+
+        plt.figure(figsize=(8, 4))
+        sns.histplot(noisy_data, kde=True, color="red", label='Noisy', alpha=0.6)
+        plt.title(f'{feature.capitalize()} Noisy Distribution (Exponential, Scale {scale})')
+        plt.legend()
+        plt.tight_layout()
+        plt.show()
