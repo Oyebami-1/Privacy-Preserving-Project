@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>JupyterLab</title><meta name="viewport" content="width=device-width,initial-scale=1">   <script id="jupyter-config-data" type="application/json">{"allow_hidden_files": false, "appName": "JupyterLab", "appNamespace": "lab", "appSettingsDir": "C:/Users/Admin/anaconda3/share/jupyter/lab/settings", "appUrl": "/lab", "appVersion": "3.6.3", "baseUrl": "/", "buildAvailable": true, "buildCheck": true, "cacheFiles": false, "collaborative": false, "devMode": false, "disabledExtensions": [], "exposeAppInBrowser": false, "extraLabextensionsPath": [], "federated_extensions": [{"extension": "./extension", "load": "static/remoteEntry.66500334d7b36213676e.js", "mimeExtension": "./mimeExtension", "name": "jupyterlab-plotly"}, {"extension": "./extension", "load": "static/remoteEntry.3544016651e52b3f8d21.js", "name": "@anaconda/assistant", "style": "./style"}, {"extension": "./extension", "load": "static/remoteEntry.99acadd960d7fb42aee5.js", "name": "@anaconda/core", "style": "./style"}, {"extension": "./extension", "load": "static/remoteEntry.d6df56cd69f4640706bc.js", "name": "@jupyter-widgets/jupyterlab-manager"}, {"extension": "./extension", "load": "static/remoteEntry.febb837ab3b6ef743bf7.js", "name": "@pyviz/jupyterlab_pyviz", "style": "./style"}], "fullAppUrl": "/lab", "fullLabextensionsUrl": "/lab/extensions", "fullLicensesUrl": "/lab/api/licenses", "fullListingsUrl": "/lab/api/listings", "fullMathjaxUrl": "/static/nbclassic/components/MathJax/MathJax.js", "fullSettingsUrl": "/lab/api/settings", "fullStaticUrl": "/static/lab", "fullThemesUrl": "/lab/api/themes", "fullTranslationsApiUrl": "/lab/api/translations", "fullTreeUrl": "/lab/tree", "fullWorkspacesApiUrl": "/lab/api/workspaces", "futureSkipStylesForDisabled": false, "ignorePlugins": [], "labextensionsPath": ["C:\\Users\\Admin\\AppData\\Roaming\\jupyter\\labextensions", "C:\\Users\\Admin\\AppData\\Roaming\\Python\\share\\jupyter\\labextensions", "C:\\Users\\Admin\\anaconda3\\share\\jupyter\\labextensions", "C:\\ProgramData\\jupyter\\labextensions"], "labextensionsUrl": "/lab/extensions", "licensesUrl": "/lab/api/licenses", "listingsUrl": "/lab/api/listings", "mathjaxConfig": "TeX-AMS-MML_HTMLorMML-full,Safe", "mode": "multiple-document", "news": {"disabled": false}, "notebookStartsKernel": true, "notebookVersion": "[1, 23, 4, \"\", \"\"]", "preferredPath": "/", "quitButton": true, "schemasDir": "C:/Users/Admin/anaconda3/share/jupyter/lab/schemas", "serverRoot": "C:/Users/Admin", "settingsUrl": "/lab/api/settings", "staticDir": "C:/Users/Admin/anaconda3/share/jupyter/lab/static", "store_id": 2, "templatesDir": "C:/Users/Admin/anaconda3/share/jupyter/lab/static", "terminalsAvailable": true, "themesDir": "C:/Users/Admin/anaconda3/share/jupyter/lab/themes", "themesUrl": "/lab/api/themes", "token": "0c8ac8791ea4860712c858eb05cd84d7b65de96ef84912e2", "translationsApiUrl": "/lab/api/translations", "treePath": "Downloads/question (1)/Toyin.ipynb", "treeUrl": "/lab/tree", "userSettingsDir": "C:/Users/Admin/.jupyter/lab/user-settings", "workspace": "default", "workspacesApiUrl": "/lab/api/workspaces", "workspacesDir": "C:/Users/Admin/.jupyter/lab/workspaces", "wsUrl": ""}</script><link rel="icon" type="image/x-icon" href="/static/favicons/favicon.ico" class="idle favicon"><link rel="" type="image/x-icon" href="/static/favicons/favicon-busy-1.ico" class="busy favicon"><script defer="defer" src="/static/lab/main.c474366c927dbb3da565.js?v=c474366c927dbb3da565"></script></head><body><script>/* Remove token from URL. */
+  (function () {
+    var location = window.location;
+    var search = location.search;
+
+    // If there is no query string, bail.
+    if (search.length <= 1) {
+      return;
+    }
+
+    // Rebuild the query string without the `token`.
+    var query = '?' + search.slice(1).split('&')
+      .filter(function (param) { return param.split('=')[0] !== 'token'; })
+      .join('&');
+
+    // Rebuild the URL with the new query string.
+    var url = location.origin + location.pathname +
+      (query !== '?' ? query : '') + location.hash;
+
+    if (url === location.href) {
+      return;
+    }
+
+    window.history.replaceState({ }, '', url);
+  })();</script></body></html>
